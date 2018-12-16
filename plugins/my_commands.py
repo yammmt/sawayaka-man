@@ -22,7 +22,7 @@ SAWAYAKA_IMG_URL = [
 
 
 @respond_to('oniku')
-def oniku_func(message):
+def oniku(message):
     attachments = [{
         "fallback": "Awesome food image.",
         "image_url": SAWAYAKA_IMG_URL[random.randrange(0, len(SAWAYAKA_IMG_URL))]
@@ -31,5 +31,5 @@ def oniku_func(message):
 
 
 @listen_to(r'sawayaka|さわやか')
-def plus_one_func(message):
+def plus_one(message):
     message.react('+1')
