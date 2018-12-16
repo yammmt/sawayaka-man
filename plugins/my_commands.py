@@ -6,6 +6,7 @@ from slackbot.bot import listen_to
 import bs4
 import json
 import random
+import re
 import requests
 
 
@@ -24,7 +25,7 @@ SAWAYAKA_IMG_URL = [
 ]
 
 
-@respond_to(r'fair|festival|げんこつおにぎりフェア')
+@respond_to(r'fair|festival|げんこつおにぎりフェア', flags=re.IGNORECASE)
 def fair(message):
     res = requests.get(GENKOTSU_FAIR_URL, verify=False) # bad way...
     res.raise_for_status()
@@ -33,7 +34,7 @@ def fair(message):
     message.reply(fair_str)
 
 
-@respond_to('oniku')
+@respond_to('oniku', flags=re.IGNORECASE)
 def oniku(message):
     attachments = [{
         "fallback": "Awesome food image.",
@@ -42,6 +43,6 @@ def oniku(message):
     message.send_webapi('Awesome!', json.dumps(attachments))
 
 
-@listen_to(r'sawayaka|さわやか')
+@listen_to(r'sawayaka|さわやか', flags=re.IGNORECASE)
 def plus_one(message):
     message.react('+1')
