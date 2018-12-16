@@ -3,10 +3,13 @@
 
 from slackbot.bot import respond_to
 from slackbot.bot import listen_to
+import bs4
 import json
 import random
+import requests
 
 
+GENKOTSU_FAIR_URL = "https://www.genkotsu-hb.com/menu/anniversary/"
 SAWAYAKA_IMG_URL = [
     "https://i.imgur.com/7iGcSze.jpg",
     "https://i.imgur.com/jDGZaAk.jpg",
@@ -19,6 +22,15 @@ SAWAYAKA_IMG_URL = [
     "https://i.imgur.com/HAU2MrA.jpg",
     "https://i.imgur.com/Xll9uq8.jpg"
 ]
+
+
+@respond_to(r'fair|festival|げんこつおにぎりフェア')
+def fair(message):
+    res = requests.get(GENKOTSU_FAIR_URL, verify=False) # bad way...
+    res.raise_for_status()
+    soup = bs4.BeautifulSoup(res.text, features="html.parser")
+    fair_str = soup.select(".leadTxt")[0].getText().replace("\u3000", "")
+    message.reply(fair_str)
 
 
 @respond_to('oniku')
