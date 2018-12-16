@@ -10,4 +10,7 @@ Slack bot for awesome Japanese restaurant [Sawayaka](https://www.genkotsu-hb.com
 
 ## Actions
 
-coming later...
+### Mention bot with "oniku"
+
+bot posts image and you'll feel Sawayaka.
+
