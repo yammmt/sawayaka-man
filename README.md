@@ -14,3 +14,6 @@ Slack bot for awesome Japanese restaurant [Sawayaka](https://www.genkotsu-hb.com
 
 bot posts image and you'll feel Sawayaka.
 
+### Say "sawayaka" or "さわやか"
+
+:+1:
